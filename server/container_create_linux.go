@@ -325,7 +325,7 @@ func (s *Server) createSandboxContainer(ctx context.Context, ctr ctrfactory.Cont
 	}
 
 	cgroup2RW := node.CgroupIsV2() && sb.Annotations()[crioann.Cgroup2RWAnnotation] == "true"
-	sysfsRW := sb.Annotations()[crioann.SysfsRWAnnotation] == "true"
+	sysfsRW := sb.Annotations()[crioann.UsernsModeAnnotation] != "" && sb.Annotations()[crioann.SysfsRWAnnotation] == "true"
 
 	s.resourceStore.SetStageForResource(ctx, ctr.Name(), "container volume configuration")
 	idMapSupport := s.Runtime().RuntimeSupportsIDMap(sb.RuntimeHandler())
