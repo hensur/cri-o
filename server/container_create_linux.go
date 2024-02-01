@@ -561,7 +561,7 @@ func (s *Server) createSandboxContainer(ctx context.Context, ctr ctrfactory.Cont
 	}
 
 	// When running on cgroupv2, automatically add a cgroup namespace for not privileged containers.
-	if !ctr.Privileged() && node.CgroupIsV2() {
+	if node.CgroupIsV2() {
 		if err := specgen.AddOrReplaceLinuxNamespace(string(rspec.CgroupNamespace), ""); err != nil {
 			return nil, err
 		}
