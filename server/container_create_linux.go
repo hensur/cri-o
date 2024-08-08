@@ -15,7 +15,6 @@ import (
 	"github.com/containers/common/pkg/timezone"
 	cstorage "github.com/containers/storage"
 	"github.com/containers/storage/pkg/idtools"
-	"github.com/containers/storage/pkg/mount"
 	"github.com/containers/storage/pkg/unshare"
 	"github.com/cri-o/cri-o/internal/config/cgmgr"
 	"github.com/cri-o/cri-o/internal/config/device"
@@ -1066,10 +1065,10 @@ func addOCIBindMounts(ctx context.Context, ctr ctrfactory.Container, mountLabel,
 		specgen.AddMount(m)
 	}
 
-	mountInfos, err := mount.GetMounts()
-	if err != nil {
-		return nil, nil, err
-	}
+	//mountInfos, err := mount.GetMounts()
+	//if err != nil {
+	//	return nil, nil, err
+	//}
 	for _, m := range mounts {
 		dest := m.ContainerPath
 		if dest == "" {
@@ -1126,17 +1125,21 @@ func addOCIBindMounts(ctx context.Context, ctr ctrfactory.Container, mountLabel,
 			// Since default root propagation in runc is rprivate ignore
 			// setting the root propagation
 		case types.MountPropagation_PROPAGATION_BIDIRECTIONAL:
-			if err := ensureShared(src, mountInfos); err != nil {
-				return nil, nil, err
-			}
+			/*
+				if err := ensureShared(src, mountInfos); err != nil {
+					return nil, nil, err
+				}
+			*/
 			options = append(options, "rshared")
 			if err := specgen.SetLinuxRootPropagation("rshared"); err != nil {
 				return nil, nil, err
 			}
 		case types.MountPropagation_PROPAGATION_HOST_TO_CONTAINER:
-			if err := ensureSharedOrSlave(src, mountInfos); err != nil {
-				return nil, nil, err
-			}
+			/*
+				if err := ensureSharedOrSlave(src, mountInfos); err != nil {
+					return nil, nil, err
+				}
+			*/
 			options = append(options, "rslave")
 			if specgen.Config.Linux.RootfsPropagation != "rshared" &&
 				specgen.Config.Linux.RootfsPropagation != "rslave" {
