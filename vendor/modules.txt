@@ -351,7 +351,7 @@ github.com/containers/ocicrypt/utils/keyprovider
 # github.com/containers/podman/v4 v4.9.3
 ## explicit; go 1.18
 github.com/containers/podman/v4/pkg/checkpoint/crutils
-# github.com/containers/storage v1.51.0
+# github.com/containers/storage v1.51.0 => github.com/hensur/storage v0.0.0-20240809133933-999d8156f0ca
 ## explicit; go 1.19
 github.com/containers/storage
 github.com/containers/storage/drivers
@@ -1637,3 +1637,4 @@ tags.cncf.io/container-device-interface/specs-go
 # zenhack.net/go/util v0.0.0-20230218002511-744d2d6d1739
 ## explicit; go 1.19
 zenhack.net/go/util
+# github.com/containers/storage => github.com/hensur/storage v0.0.0-20240809133933-999d8156f0ca
