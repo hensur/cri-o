@@ -233,4 +233,4 @@ require (
 	zenhack.net/go/util v0.0.0-20230218002511-744d2d6d1739 // indirect
 )
 
-replace github.com/containers/storage => github.com/hensur/storage v0.0.0-20240809133933-999d8156f0ca
+replace github.com/containers/storage => github.com/hensur/storage v0.0.0-20240809150018-daad545767f0
